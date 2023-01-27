@@ -63,7 +63,8 @@ public class Solar {
         return "Ancho: " + ancho + "\n" +
                 "Largo: " + largo + "\n" +
                 "Area: " + (ancho*largo) + "\n" +
-                "Dueño: " + owner;
+                "Dueño: " + owner + "\n"
+                + "Estado: " + estado + "\n";
         
     }
     

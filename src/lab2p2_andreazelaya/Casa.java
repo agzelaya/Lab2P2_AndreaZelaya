@@ -109,6 +109,8 @@ public class Casa {
                 "Ancho: " + ancho + "\n" +
                 "Largo: " + largo + "\n" +
                 "Numero de baños: " + bathroom + "\n"+
-                "Numero de cuartos: " + rooms ;
+                "Numero de cuartos: " + rooms + "\n"
+                + "Estado: " + estado + "\n"
+                + "Dueño: " + owner;
     }
 }

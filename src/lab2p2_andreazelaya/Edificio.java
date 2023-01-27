@@ -65,6 +65,8 @@ public class Edificio {
         return "Cantidad de pisos: " + pisos + "\n" +
                 "Cantidad de locales: " + locales + "\n" +
                 "Direccion por referencia: " + direccion + "\n"
+                + "Estado: " + estado + "\n"
+                + "Dueño: " + owner 
                 ;
     }
     

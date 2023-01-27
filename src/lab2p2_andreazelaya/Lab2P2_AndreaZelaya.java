@@ -9,11 +9,13 @@ public class Lab2P2_AndreaZelaya {
 
     static Scanner in = new Scanner(System.in);
     static ArrayList lista = new ArrayList();
+    static ArrayList<Usuario> users = new ArrayList();
+
+    //variables para manejo de cuenta
+    static boolean isAdmin = true;
+    static String username = "null";
 
     public static void main(String[] args) {
-
-        ArrayList<Usuario> users = new ArrayList();
-
         System.out.println("INMOBILIARIA BLACK FLOYD\n\n");
         int opc;
         do {
@@ -21,31 +23,51 @@ public class Lab2P2_AndreaZelaya {
                     + "1. Registro de Inmueble/Solar\n"
                     + "2. Manejo de estados\n"
                     + "3. Log in/Sign up\n"
-                    + "4. Salir\n"
+                    + "4. Log out"
+                    + "5. Salir\n"
                     + "Ingrese la opción que desea usar: ");
             opc = in.nextInt();
 
             switch (opc) {
                 case 1: {
+                    System.out.println("\nREGISTRO");
                     Registro();
                     break;
                 }
                 case 2: {
-
+                    System.out.println("\nMANEJO DE ESTADOS");
+                    manejoEstados();
                     break;
                 }
 
                 case 3: {
-                    System.out.println("LOG IN/SIGN UP");
+                    System.out.println("\nLOG IN/SIGN UP"
+                            + "1. Crear nueva cuenta\n"
+                            + "2. Ingresar a cuenta existente");
+                    int opcAcc = in.nextInt();
+                    
+                    switch(opcAcc){
+                        case 1:{
+                            signUp();
+                            break;
+                        }
+                        
+                        case 2:{
+                            break;
+                        }
+                    }
+                    
                     break;
                 }
 
                 case 4: {
+                    boolean isAdmin = true;
+                    String username = "null";
                     break;
                 }
 
             }
-        } while (opc != 4);
+        } while (opc != 5);
     }
 
     public static void Registro() {
@@ -326,6 +348,12 @@ public class Lab2P2_AndreaZelaya {
                     break;
                 }
                 case 4: {
+                    String salida = "";
+                    for (Object t : lista) {
+                        salida += "" + lista.indexOf(t) + " - " + t + "\n";
+
+                    }
+                    System.out.println(salida + "\n\n");
                     System.out.println("Ingrese el indice del inmueble o solar a eliminar");
                     int elim = in.nextInt();
                     if (elim >= 0 & elim < lista.size()) {
@@ -337,15 +365,22 @@ public class Lab2P2_AndreaZelaya {
                     break;
                 }
                 case 5: {
-                    System.out.println("Ingrese el indice del inmueble o solar a vender");
+                    String salida = "";
+                    for (Object t : lista) {
+                        salida += "" + lista.indexOf(t) + " - " + t + "\n";
+
+                    }
+                    System.out.println(salida);
+
+                    System.out.println("Ingrese el indice del inmueble o solar a comprar");
                     int vent = in.nextInt();
                     if (vent >= 0 & vent < lista.size()) {
                         if (lista.get(vent) instanceof Casa) {
-                            ((Casa) lista.get(vent)).setOwner("");
+                            ((Casa) lista.get(vent)).setOwner(username);
                         } else if (lista.get(vent) instanceof Edificio) {
-                            ((Edificio) lista.get(vent)).setOwner("");
+                            ((Edificio) lista.get(vent)).setOwner(username);
                         } else if (lista.get(vent) instanceof Solar) {
-                            ((Solar) lista.get(vent)).setOwner("");
+                            ((Solar) lista.get(vent)).setOwner(username);
                         }
 
                     } else {
@@ -359,6 +394,12 @@ public class Lab2P2_AndreaZelaya {
     }
 
     public static void manejoEstados() {
+        String salida = "";
+        for (Object t : lista) {
+            salida += "" + lista.indexOf(t) + " - " + t + "\n";
+
+        }
+        System.out.println(salida + "\n\n");
         System.out.println("Ingrese el indice de el inmoviliario a modificar el estado:");
         int pos = in.nextInt();
 
@@ -378,6 +419,25 @@ public class Lab2P2_AndreaZelaya {
         } else {
             System.out.println("Indice no valido");
         }
+    }
+    
+    public static void signUp(){
+        System.out.println("Nombre: ");
+        in.next();
+        String name = in.nextLine();
+        username = name;
+        
+        System.out.println("Edad: ");
+        int age = in.nextInt();
+        
+        System.out.println("Username: ");
+        String user = in.next();
+        
+        System.out.println("Contraseña: ");
+        String password = in.next();
+        
+        Usuario u = new Usuario(name, age, user, password);
+        users.add(u);
     }
 
 }

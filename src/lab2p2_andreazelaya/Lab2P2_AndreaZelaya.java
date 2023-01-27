@@ -31,6 +31,7 @@ public class Lab2P2_AndreaZelaya {
                     break;
                 }
                 case 2: {
+
                     break;
                 }
 
@@ -339,8 +340,14 @@ public class Lab2P2_AndreaZelaya {
                     System.out.println("Ingrese el indice del inmueble o solar a vender");
                     int vent = in.nextInt();
                     if (vent >= 0 & vent < lista.size()) {
-                        lista.remove(vent);
-                        System.out.println("Propiedad vendida exitosamente");
+                        if (lista.get(vent) instanceof Casa) {
+                            ((Casa) lista.get(vent)).setOwner("");
+                        } else if (lista.get(vent) instanceof Edificio) {
+                            ((Edificio) lista.get(vent)).setOwner("");
+                        } else if (lista.get(vent) instanceof Solar) {
+                            ((Solar) lista.get(vent)).setOwner("");
+                        }
+
                     } else {
                         System.out.println("La posicion entregada no es valida");
                     }
@@ -349,6 +356,28 @@ public class Lab2P2_AndreaZelaya {
             }
 
         } while (opc != 6);
+    }
+
+    public static void manejoEstados() {
+        System.out.println("Ingrese el indice de el inmoviliario a modificar el estado:");
+        int pos = in.nextInt();
+
+        if (pos >= 0 & pos < lista.size()) {
+            System.out.println("Ingrese el nuevo estado: ");
+            in.next();
+            String estado = in.nextLine();
+
+            if (lista.get(pos) instanceof Casa) {
+                ((Casa) lista.get(pos)).setEstado(estado);
+            } else if (lista.get(pos) instanceof Edificio) {
+                ((Edificio) lista.get(pos)).setEstado(estado);
+            } else if (lista.get(pos) instanceof Solar) {
+                ((Solar) lista.get(pos)).setEstado(estado);
+            }
+
+        } else {
+            System.out.println("Indice no valido");
+        }
     }
 
 }

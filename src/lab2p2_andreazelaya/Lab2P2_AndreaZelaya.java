@@ -12,10 +12,13 @@ public class Lab2P2_AndreaZelaya {
     static ArrayList<Usuario> users = new ArrayList();
 
     //variables para manejo de cuenta
-    static boolean isAdmin = true;
+    static boolean isAdmin = false;
     static String username = "null";
 
     public static void main(String[] args) {
+        Usuario admin = new Usuario("Admin",0,"admin","admin1234");
+        users.add(admin);
+        
         System.out.println("INMOBILIARIA BLACK FLOYD\n\n");
         int opc;
         do {
@@ -23,7 +26,7 @@ public class Lab2P2_AndreaZelaya {
                     + "1. Registro de Inmueble/Solar\n"
                     + "2. Manejo de estados\n"
                     + "3. Log in/Sign up\n"
-                    + "4. Log out"
+                    + "4. Log out\n"
                     + "5. Salir\n"
                     + "Ingrese la opción que desea usar: ");
             opc = in.nextInt();
@@ -41,7 +44,7 @@ public class Lab2P2_AndreaZelaya {
                 }
 
                 case 3: {
-                    System.out.println("\nLOG IN/SIGN UP"
+                    System.out.println("\nLOG IN/SIGN UP\n"
                             + "1. Crear nueva cuenta\n"
                             + "2. Ingresar a cuenta existente");
                     int opcAcc = in.nextInt();
@@ -53,6 +56,8 @@ public class Lab2P2_AndreaZelaya {
                         }
                         
                         case 2:{
+                            logIn();
+                            System.out.println(isAdmin);
                             break;
                         }
                     }
@@ -63,6 +68,7 @@ public class Lab2P2_AndreaZelaya {
                 case 4: {
                     boolean isAdmin = true;
                     String username = "null";
+                    System.out.println("Log out exitoso\n");
                     break;
                 }
 
@@ -84,6 +90,10 @@ public class Lab2P2_AndreaZelaya {
 
             switch (opc) {
                 case 1: {
+                    if(isAdmin == false){
+                        System.out.println("Acceso denegado");
+                        break;
+                    }
                     int opc2;
                     System.out.println("Crear un nuevo:\n"
                             + "1. Casa\n"
@@ -426,6 +436,7 @@ public class Lab2P2_AndreaZelaya {
         in.next();
         String name = in.nextLine();
         username = name;
+        isAdmin = false;
         
         System.out.println("Edad: ");
         int age = in.nextInt();
@@ -439,5 +450,27 @@ public class Lab2P2_AndreaZelaya {
         Usuario u = new Usuario(name, age, user, password);
         users.add(u);
     }
-
+    
+    public static void logIn(){
+        System.out.println("Ingrese el nombre de cuenta: ");
+        //in.next();
+        String cuenta = in.next();
+        
+        System.out.println("Ingrese la contraseña: ");
+        String contra = in.next();
+        
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getUsername().equals(cuenta) && users.get(i).getPassword().equals(contra)){
+                username = users.get(i).getNombre();
+                isAdmin = false;
+            }else{
+                System.out.println("Nombre de cuenta o contraseña incorrecta\n\n");
+            }
+        }
+        
+        if(cuenta.equals("admin") && contra.equals("admin1234")){
+            username = "Admin";
+            isAdmin = true;
+        }
+    }
 }

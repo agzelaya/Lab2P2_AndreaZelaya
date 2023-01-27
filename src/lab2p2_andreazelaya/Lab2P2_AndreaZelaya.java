@@ -90,7 +90,11 @@ public class Lab2P2_AndreaZelaya {
                             System.out.println("Ingrese el numero de cuartos: ");
                             int rooms = in.nextInt();
 
-                            Casa casa = new Casa(numcasa, numblo, color, ancho, largo, bathrooms, rooms);
+                            System.out.println("Ingrese el estado de la casa: ");
+                            in.next();
+                            String estado = in.nextLine();
+
+                            Casa casa = new Casa(numcasa, numblo, color, ancho, largo, bathrooms, rooms, estado);
                             lista.add(casa);
                             break;
                         }
@@ -105,7 +109,11 @@ public class Lab2P2_AndreaZelaya {
                             in.next();
                             String direccion = in.nextLine();
 
-                            Edificio edificio = new Edificio(pisos, locales, direccion);
+                            System.out.println("Ingrese el estado de la casa: ");
+                            in.next();
+                            String estado = in.nextLine();
+
+                            Edificio edificio = new Edificio(pisos, locales, direccion, estado);
                             lista.add(edificio);
                             break;
                         }
@@ -116,7 +124,11 @@ public class Lab2P2_AndreaZelaya {
                             System.out.println("Ingrese el largo: ");
                             int largo = in.nextInt();
 
-                            Solar solar = new Solar(ancho, largo);
+                            System.out.println("Ingrese el estado de la casa: ");
+                            in.next();
+                            String estado = in.nextLine();
+
+                            Solar solar = new Solar(ancho, largo, estado);
                             lista.add(solar);
                             break;
                         }
@@ -182,14 +194,142 @@ public class Lab2P2_AndreaZelaya {
                     break;
                 }
                 case 3: {
+                    System.out.println("Ingrese el índice a modificar");
+                    int pos = in.nextInt();
+
+                    if (pos >= 0 & pos < lista.size()) {
+                        if (lista.get(pos) instanceof Casa) {
+                            System.out.println("Cual atributo desea modificar?:\n"
+                                    + "1. Numero de casa\n"
+                                    + "2. Numero de bloque\n"
+                                    + "3. Color\n"
+                                    + "4. Ancho\n"
+                                    + "5. Largo\n"
+                                    + "6. Numero de baños\n"
+                                    + "7. Numero de cuartos\n");
+                            int atr = in.nextInt();
+
+                            switch (atr) {
+                                case 1: {
+                                    System.out.println("Ingrese el numero de casa: ");
+                                    int numcasa = in.nextInt();
+                                    ((Casa) lista.get(pos)).setNum_casa(numcasa);
+                                    break;
+                                }
+
+                                case 2: {
+                                    System.out.println("Ingrese el numero de bloque: ");
+                                    int numblo = in.nextInt();
+                                    ((Casa) lista.get(pos)).setNum_bloque(numblo);
+                                    break;
+                                }
+
+                                case 3: {
+                                    Color color = JColorChooser.showDialog(null, "Seleccione color", Color.WHITE);
+                                    ((Casa) lista.get(pos)).setColor(color);
+                                }
+
+                                case 4: {
+                                    System.out.println("Ingrese el ancho de la casa: ");
+                                    int ancho = in.nextInt();
+                                    ((Casa) lista.get(pos)).setAncho(ancho);
+                                    break;
+                                }
+
+                                case 5: {
+                                    System.out.println("Ingrese el largo de la casa: ");
+                                    int largo = in.nextInt();
+                                    ((Casa) lista.get(pos)).setLargo(largo);
+                                    break;
+                                }
+
+                                case 6: {
+                                    System.out.println("Ingrese el numero de cuartos: ");
+                                    int rooms = in.nextInt();
+                                    ((Casa) lista.get(pos)).setRooms(rooms);
+                                    break;
+                                }
+
+                                case 7: {
+                                    System.out.println("Ingrese el numero de bloque: ");
+                                    int numblo = in.nextInt();
+                                    ((Casa) lista.get(pos)).setNum_bloque(numblo);
+                                    break;
+                                }
+                                default: {
+                                    System.out.println("Opcion no valida");
+                                }
+
+                            }
+                        } else if (lista.get(pos) instanceof Edificio) {
+                            System.out.println("Cual atributo desea modificar?:\n"
+                                    + "1. Numero de pisos\n"
+                                    + "2. Cantidad de locales\n"
+                                    + "3. Dirección por referencia");
+                            int atr = in.nextInt();
+
+                            switch (atr) {
+                                case 1: {
+                                    System.out.println("Ingrese el numero de pisos: ");
+                                    int pisos = in.nextInt();
+                                    ((Edificio) lista.get(pos)).setPisos(pisos);
+                                    break;
+                                }
+                                case 2: {
+                                    System.out.println("Ingrese el cantidad de locales: ");
+                                    int locales = in.nextInt();
+                                    ((Edificio) lista.get(pos)).setLocales(locales);
+                                    break;
+                                }
+                                case 3: {
+                                    System.out.println("Ingrese la direccion por referencia: ");
+                                    in.nextLine();
+                                    String direc = in.nextLine();
+                                    ((Edificio) lista.get(pos)).setDireccion(direc);
+                                    break;
+                                }
+                                default: {
+                                    System.out.println("Opcion no valida");
+                                }
+                            }
+                        } else if (lista.get(pos) instanceof Solar) {
+                            System.out.println("Cual atributo desea modificar?\n"
+                                    + "1. Ancho\n"
+                                    + "2. Largo\n");
+                            int atr = in.nextInt();
+
+                            switch (atr) {
+                                case 1: {
+                                    System.out.println("Ingrese el ancho: ");
+                                    int ancho = in.nextInt();
+                                    ((Solar) lista.get(pos)).setAncho(ancho);
+                                    break;
+                                }
+                                case 2: {
+                                    System.out.println("Ingrese el largo: ");
+                                    int largo = in.nextInt();
+                                    ((Solar) lista.get(pos)).setLargo(largo);
+                                    break;
+                                }
+                                default: {
+                                    System.out.println("Opcion no valida");
+                                }
+
+                            }
+
+                        }
+                    } else {
+                        System.out.println("La posicion entregada no es valida");
+                    }
+
                     break;
                 }
                 case 4: {
                     System.out.println("Ingrese el indice del inmueble o solar a eliminar");
                     int elim = in.nextInt();
                     if (elim >= 0 & elim < lista.size()) {
-                            lista.remove(elim);
-                            System.out.println("");
+                        lista.remove(elim);
+                        System.out.println("");
                     } else {
                         System.out.println("La posicion entregada no es valida");
                     }
@@ -199,8 +339,8 @@ public class Lab2P2_AndreaZelaya {
                     System.out.println("Ingrese el indice del inmueble o solar a vender");
                     int vent = in.nextInt();
                     if (vent >= 0 & vent < lista.size()) {
-                            lista.remove(vent);
-                            System.out.println("Propiedad vendida exitosamente");
+                        lista.remove(vent);
+                        System.out.println("Propiedad vendida exitosamente");
                     } else {
                         System.out.println("La posicion entregada no es valida");
                     }

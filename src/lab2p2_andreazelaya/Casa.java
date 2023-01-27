@@ -11,12 +11,22 @@ public class Casa {
     private int largo;
     private int bathroom;
     private int rooms;
+    private String estado;
+    private String owner;
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
     
     public Casa(){
         
     }
     
-    public Casa(int num_casa, int num_bloque, Color color, int ancho, int largo, int bathroom, int rooms) {
+    public Casa(int num_casa, int num_bloque, Color color, int ancho, int largo, int bathroom, int rooms, String estado) {
         this.num_casa = num_casa;
         this.num_bloque = num_bloque;
         this.color = color;
@@ -24,6 +34,15 @@ public class Casa {
         this.largo = largo;
         this.bathroom = bathroom;
         this.rooms = rooms;
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getNum_casa() {

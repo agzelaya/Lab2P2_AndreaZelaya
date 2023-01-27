@@ -13,12 +13,13 @@ public class Lab2P2_AndreaZelaya {
 
     //variables para manejo de cuenta
     static boolean isAdmin = false;
+    static boolean inAcc = false;
     static String username = "null";
 
     public static void main(String[] args) {
-        Usuario admin = new Usuario("Admin",0,"admin","admin1234");
+        Usuario admin = new Usuario("Admin", 0, "admin", "admin1234");
         users.add(admin);
-        
+
         System.out.println("INMOBILIARIA BLACK FLOYD\n\n");
         int opc;
         do {
@@ -48,25 +49,25 @@ public class Lab2P2_AndreaZelaya {
                             + "1. Crear nueva cuenta\n"
                             + "2. Ingresar a cuenta existente");
                     int opcAcc = in.nextInt();
-                    
-                    switch(opcAcc){
-                        case 1:{
+
+                    switch (opcAcc) {
+                        case 1: {
                             signUp();
                             break;
                         }
-                        
-                        case 2:{
+
+                        case 2: {
                             logIn();
-                            System.out.println(isAdmin);
                             break;
                         }
                     }
-                    
+
                     break;
                 }
 
                 case 4: {
                     boolean isAdmin = true;
+                    boolean inAcc = false;
                     String username = "null";
                     System.out.println("Log out exitoso\n");
                     break;
@@ -90,7 +91,7 @@ public class Lab2P2_AndreaZelaya {
 
             switch (opc) {
                 case 1: {
-                    if(isAdmin == false){
+                    if (isAdmin == false) {
                         System.out.println("Acceso denegado");
                         break;
                     }
@@ -124,7 +125,7 @@ public class Lab2P2_AndreaZelaya {
                             int rooms = in.nextInt();
 
                             System.out.println("Ingrese el estado de la casa: ");
-                            in.next();
+                            in.nextLine();
                             String estado = in.nextLine();
 
                             Casa casa = new Casa(numcasa, numblo, color, ancho, largo, bathrooms, rooms, estado);
@@ -144,9 +145,9 @@ public class Lab2P2_AndreaZelaya {
 
                             System.out.println("Ingrese el estado de la casa: ");
                             in.next();
-                            String estado = in.nextLine();
+                            String estado1 = in.nextLine();
 
-                            Edificio edificio = new Edificio(pisos, locales, direccion, estado);
+                            Edificio edificio = new Edificio(pisos, locales, direccion, estado1);
                             lista.add(edificio);
                             break;
                         }
@@ -159,9 +160,9 @@ public class Lab2P2_AndreaZelaya {
 
                             System.out.println("Ingrese el estado de la casa: ");
                             in.next();
-                            String estado = in.nextLine();
+                            String estado2 = in.nextLine();
 
-                            Solar solar = new Solar(ancho, largo, estado);
+                            Solar solar = new Solar(ancho, largo, estado2);
                             lista.add(solar);
                             break;
                         }
@@ -227,6 +228,16 @@ public class Lab2P2_AndreaZelaya {
                     break;
                 }
                 case 3: {
+                    if (isAdmin == false) {
+                        System.out.println("Acceso denegado");
+                        break;
+                    }
+                     String salida = "";
+                            for (Object t : lista) {
+                                salida += "" + lista.indexOf(t) + " - " + t + "\n";
+
+                            }
+                            System.out.println(salida);
                     System.out.println("Ingrese el índice a modificar");
                     int pos = in.nextInt();
 
@@ -358,7 +369,16 @@ public class Lab2P2_AndreaZelaya {
                     break;
                 }
                 case 4: {
-                    String salida = "";
+                    if (isAdmin == false) {
+                        System.out.println("Acceso denegado");
+                        break;
+                    }
+                     String salida = "";
+                            for (Object t : lista) {
+                                salida += "" + lista.indexOf(t) + " - " + t + "\n";
+
+                            }
+                            System.out.println(salida);
                     for (Object t : lista) {
                         salida += "" + lista.indexOf(t) + " - " + t + "\n";
 
@@ -386,11 +406,26 @@ public class Lab2P2_AndreaZelaya {
                     int vent = in.nextInt();
                     if (vent >= 0 & vent < lista.size()) {
                         if (lista.get(vent) instanceof Casa) {
+                            if(inAcc == true){
                             ((Casa) lista.get(vent)).setOwner(username);
+                                System.out.println("Venta exitosa");
+                            }else{
+                                System.out.println("Venta no es posible, ingrese a una cuenta");
+                            }
                         } else if (lista.get(vent) instanceof Edificio) {
+                            if(inAcc == true){
                             ((Edificio) lista.get(vent)).setOwner(username);
+                                System.out.println("Venta exitosa");
+                            }else{
+                                System.out.println("Venta no es posible, ingrese a una cuenta");
+                            }
                         } else if (lista.get(vent) instanceof Solar) {
+                            if(inAcc == true){
                             ((Solar) lista.get(vent)).setOwner(username);
+                                System.out.println("Venta exitosa");
+                            }else{
+                                System.out.println("Venta no es posible, ingrese a una cuenta");
+                            }
                         }
 
                     } else {
@@ -404,71 +439,77 @@ public class Lab2P2_AndreaZelaya {
     }
 
     public static void manejoEstados() {
-        String salida = "";
-        for (Object t : lista) {
-            salida += "" + lista.indexOf(t) + " - " + t + "\n";
-
-        }
-        System.out.println(salida + "\n\n");
-        System.out.println("Ingrese el indice de el inmoviliario a modificar el estado:");
-        int pos = in.nextInt();
-
-        if (pos >= 0 & pos < lista.size()) {
-            System.out.println("Ingrese el nuevo estado: ");
-            in.next();
-            String estado = in.nextLine();
-
-            if (lista.get(pos) instanceof Casa) {
-                ((Casa) lista.get(pos)).setEstado(estado);
-            } else if (lista.get(pos) instanceof Edificio) {
-                ((Edificio) lista.get(pos)).setEstado(estado);
-            } else if (lista.get(pos) instanceof Solar) {
-                ((Solar) lista.get(pos)).setEstado(estado);
-            }
-
+        if (isAdmin == false) {
+            System.out.println("Acceso denegado");
         } else {
-            System.out.println("Indice no valido");
+            String salida = "";
+            for (Object t : lista) {
+                salida += "" + lista.indexOf(t) + " - " + t + "\n";
+
+            }
+            System.out.println(salida + "\n\n");
+            System.out.println("Ingrese el indice de el inmoviliario a modificar el estado:");
+            int pos = in.nextInt();
+
+            if (pos >= 0 & pos < lista.size()) {
+                System.out.println("Ingrese el nuevo estado: ");
+                in.next();
+                String estado = in.nextLine();
+
+                if (lista.get(pos) instanceof Casa) {
+                    ((Casa) lista.get(pos)).setEstado(estado);
+                } else if (lista.get(pos) instanceof Edificio) {
+                    ((Edificio) lista.get(pos)).setEstado(estado);
+                } else if (lista.get(pos) instanceof Solar) {
+                    ((Solar) lista.get(pos)).setEstado(estado);
+                }
+
+            } else {
+                System.out.println("Indice no valido");
+            }
         }
     }
-    
-    public static void signUp(){
+
+    public static void signUp() {
         System.out.println("Nombre: ");
         in.next();
         String name = in.nextLine();
         username = name;
         isAdmin = false;
-        
+        inAcc = true;
+
         System.out.println("Edad: ");
         int age = in.nextInt();
-        
+
         System.out.println("Username: ");
         String user = in.next();
-        
+
         System.out.println("Contraseña: ");
         String password = in.next();
-        
+
         Usuario u = new Usuario(name, age, user, password);
         users.add(u);
     }
-    
-    public static void logIn(){
+
+    public static void logIn() {
         System.out.println("Ingrese el nombre de cuenta: ");
         //in.next();
         String cuenta = in.next();
-        
+
         System.out.println("Ingrese la contraseña: ");
         String contra = in.next();
-        
+
         for (int i = 0; i < users.size(); i++) {
-            if(users.get(i).getUsername().equals(cuenta) && users.get(i).getPassword().equals(contra)){
+            if (users.get(i).getUsername().equals(cuenta) && users.get(i).getPassword().equals(contra)) {
                 username = users.get(i).getNombre();
                 isAdmin = false;
-            }else{
+                inAcc = true;
+            } else {
                 System.out.println("Nombre de cuenta o contraseña incorrecta\n\n");
             }
         }
-        
-        if(cuenta.equals("admin") && contra.equals("admin1234")){
+
+        if (cuenta.equals("admin") && contra.equals("admin1234")) {
             username = "Admin";
             isAdmin = true;
         }

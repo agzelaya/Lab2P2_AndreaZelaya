@@ -61,7 +61,6 @@ public class Lab2P2_AndreaZelaya {
                             break;
                         }
                     }
-                    System.out.println(users);
 
                     break;
                 }
@@ -110,7 +109,7 @@ public class Lab2P2_AndreaZelaya {
 
                             System.out.println("Ingrese el numero de bloque: ");
                             int numblo = in.nextInt();
-                            
+
                             Color color = JColorChooser.showDialog(null, "Seleccione color", Color.WHITE);
 
                             System.out.println("Ingrese el ancho de la casa: ");
@@ -158,7 +157,6 @@ public class Lab2P2_AndreaZelaya {
                             System.out.println("Ingrese el largo: ");
                             int largo = in.nextInt();
 
-
                             Solar solar = new Solar(ancho, largo);
                             lista.add(solar);
                             break;
@@ -179,9 +177,47 @@ public class Lab2P2_AndreaZelaya {
                     switch (opc3) {
                         case 1: {
                             String salida = "";
-                            for (Object t : lista) {
-                                salida += "" + lista.indexOf(t) + " - " + t + "\n";
+                            ArrayList ready = new ArrayList();
+                            ArrayList construccion = new ArrayList();
+                            ArrayList constEspera = new ArrayList();
+                            ArrayList demoEspera = new ArrayList();
+                            ArrayList etc = new ArrayList();
 
+                            for (Object t : lista) {
+
+                                if (t instanceof Casa) {
+                                    if (((Casa) t).getEstado().equals("LISTA")) {
+                                        ready.add(t);
+                                    } else if (((Casa) t).getEstado().equals("EN CONSTRUCCION")) {
+                                        construccion.add(t);
+                                    } else if (((Casa) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                        constEspera.add(t);
+                                    } else if (((Casa) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                        demoEspera.add(t);
+                                    }
+                                } else if (t instanceof Edificio) {
+                                    if (((Edificio) t).getEstado().equals("LISTA")) {
+                                        ready.add(t);
+                                    } else if (((Edificio) t).getEstado().equals("EN CONSTRUCCION")) {
+                                        construccion.add(t);
+                                    } else if (((Edificio) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                        constEspera.add(t);
+                                    } else if (((Edificio) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                        demoEspera.add(t);
+                                    }
+                                } else {
+                                    etc.add(t);
+                                }
+                            }
+                            ArrayList ordenada = new ArrayList();
+                            ordenada.addAll(ready);
+                            ordenada.addAll(construccion);
+                            ordenada.addAll(constEspera);
+                            ordenada.addAll(demoEspera);
+                            ordenada.addAll(etc);
+
+                            for (Object o : ordenada) {
+                                salida += "" + ordenada.indexOf(o) + " - " + o + "\n";
                             }
                             System.out.println(salida);
                             break;
@@ -189,20 +225,68 @@ public class Lab2P2_AndreaZelaya {
                         }
                         case 2: {
                             String salida = "";
+                            ArrayList ready = new ArrayList();
+                            ArrayList construccion = new ArrayList();
+                            ArrayList constEspera = new ArrayList();
+                            ArrayList demoEspera = new ArrayList();
+                            ArrayList etc = new ArrayList();
+
                             for (Object t : lista) {
                                 if (t instanceof Casa) {
-                                    salida += "" + lista.indexOf(t) + " - " + t + "\n";
+                                    if (((Casa) t).getEstado().equals("LISTA")) {
+                                        ready.add(t);
+                                    } else if (((Casa) t).getEstado().equals("EN CONSTRUCCION")) {
+                                        construccion.add(t);
+                                    } else if (((Casa) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                        constEspera.add(t);
+                                    } else if (((Casa) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                        demoEspera.add(t);
+                                    }
                                 }
+                            }
+                            ArrayList ordenada = new ArrayList();
+                            ordenada.addAll(ready);
+                            ordenada.addAll(construccion);
+                            ordenada.addAll(constEspera);
+                            ordenada.addAll(demoEspera);
+                            ordenada.addAll(etc);
+
+                            for (Object o : ordenada) {
+                                salida += "" + ordenada.indexOf(o) + " - " + o + "\n";
                             }
                             System.out.println(salida);
                             break;
                         }
                         case 3: {
                             String salida = "";
+                            ArrayList ready = new ArrayList();
+                            ArrayList construccion = new ArrayList();
+                            ArrayList constEspera = new ArrayList();
+                            ArrayList demoEspera = new ArrayList();
+                            ArrayList etc = new ArrayList();
+
                             for (Object t : lista) {
                                 if (t instanceof Edificio) {
-                                    salida += "" + lista.indexOf(t) + " - " + t + "\n";
+                                    if (((Edificio) t).getEstado().equals("LISTA")) {
+                                        ready.add(t);
+                                    } else if (((Edificio) t).getEstado().equals("EN CONSTRUCCION")) {
+                                        construccion.add(t);
+                                    } else if (((Edificio) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                        constEspera.add(t);
+                                    } else if (((Edificio) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                        demoEspera.add(t);
+                                    }
                                 }
+                            }
+                            ArrayList ordenada = new ArrayList();
+                            ordenada.addAll(ready);
+                            ordenada.addAll(construccion);
+                            ordenada.addAll(constEspera);
+                            ordenada.addAll(demoEspera);
+                            ordenada.addAll(etc);
+
+                            for (Object o : ordenada) {
+                                salida += "" + ordenada.indexOf(o) + " - " + o + "\n";
                             }
                             System.out.println(salida);
                             break;
@@ -210,11 +294,21 @@ public class Lab2P2_AndreaZelaya {
 
                         case 4: {
                             String salida = "";
+                            ArrayList ready = new ArrayList();
+                            ArrayList construccion = new ArrayList();
+                            ArrayList constEspera = new ArrayList();
+                            ArrayList demoEspera = new ArrayList();
+                            ArrayList etc = new ArrayList();
+
                             for (Object t : lista) {
+
                                 if (t instanceof Solar) {
-                                    salida += "" + lista.indexOf(t) + " - " + t + "\n";
+                                    salida += "" + etc.indexOf(t) + " - " + t + "\n";
+
                                 }
+
                             }
+
                             System.out.println(salida);
                             break;
                         }
@@ -222,19 +316,57 @@ public class Lab2P2_AndreaZelaya {
                             System.out.println("Opcion ingresada no es valida");
                         }
                     }
-            break;
+                    break;
                 }
                 case 3: {
                     if (isAdmin == false) {
                         System.out.println("Acceso denegado");
                         break;
                     }
-                     String salida = "";
-                            for (Object t : lista) {
-                                salida += "" + lista.indexOf(t) + " - " + t + "\n";
+                    String salida = "";
+                    ArrayList ready = new ArrayList();
+                    ArrayList construccion = new ArrayList();
+                    ArrayList constEspera = new ArrayList();
+                    ArrayList demoEspera = new ArrayList();
+                    ArrayList etc = new ArrayList();
 
+                    for (Object t : lista) {
+
+                        if (t instanceof Casa) {
+                            if (((Casa) t).getEstado().equals("LISTA")) {
+                                ready.add(t);
+                            } else if (((Casa) t).getEstado().equals("EN CONSTRUCCION")) {
+                                construccion.add(t);
+                            } else if (((Casa) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                constEspera.add(t);
+                            } else if (((Casa) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                demoEspera.add(t);
                             }
-                            System.out.println(salida);
+                        } else if (t instanceof Edificio) {
+                            if (((Edificio) t).getEstado().equals("LISTA")) {
+                                ready.add(t);
+                            } else if (((Edificio) t).getEstado().equals("EN CONSTRUCCION")) {
+                                construccion.add(t);
+                            } else if (((Edificio) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                constEspera.add(t);
+                            } else if (((Edificio) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                demoEspera.add(t);
+                            }
+                        } else {
+                            etc.add(t);
+                        }
+                    }
+                    ArrayList ordenada = new ArrayList();
+                    ordenada.addAll(ready);
+                    ordenada.addAll(construccion);
+                    ordenada.addAll(constEspera);
+                    ordenada.addAll(demoEspera);
+                    ordenada.addAll(etc);
+
+                    for (Object o : ordenada) {
+                        salida += "" + ordenada.indexOf(o) + " - " + o + "\n";
+                    }
+                    System.out.println(salida);
                     System.out.println("Ingrese el índice a modificar");
                     int pos = in.nextInt();
 
@@ -370,16 +502,50 @@ public class Lab2P2_AndreaZelaya {
                         System.out.println("Acceso denegado");
                         break;
                     }
-                     String salida = "";
-                            for (Object t : lista) {
-                                salida += "" + lista.indexOf(t) + " - " + t + "\n";
+                    String salida = "";
+                    ArrayList ready = new ArrayList();
+                    ArrayList construccion = new ArrayList();
+                    ArrayList constEspera = new ArrayList();
+                    ArrayList demoEspera = new ArrayList();
+                    ArrayList etc = new ArrayList();
 
-                            }
-                            System.out.println(salida);
                     for (Object t : lista) {
-                        salida += "" + lista.indexOf(t) + " - " + t + "\n";
 
+                        if (t instanceof Casa) {
+                            if (((Casa) t).getEstado().equals("LISTA")) {
+                                ready.add(t);
+                            } else if (((Casa) t).getEstado().equals("EN CONSTRUCCION")) {
+                                construccion.add(t);
+                            } else if (((Casa) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                constEspera.add(t);
+                            } else if (((Casa) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                demoEspera.add(t);
+                            }
+                        } else if (t instanceof Edificio) {
+                            if (((Edificio) t).getEstado().equals("LISTA")) {
+                                ready.add(t);
+                            } else if (((Edificio) t).getEstado().equals("EN CONSTRUCCION")) {
+                                construccion.add(t);
+                            } else if (((Edificio) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                constEspera.add(t);
+                            } else if (((Edificio) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                demoEspera.add(t);
+                            }
+                        } else {
+                            etc.add(t);
+                        }
                     }
+                    ArrayList ordenada = new ArrayList();
+                    ordenada.addAll(ready);
+                    ordenada.addAll(construccion);
+                    ordenada.addAll(constEspera);
+                    ordenada.addAll(demoEspera);
+                    ordenada.addAll(etc);
+
+                    for (Object o : ordenada) {
+                        salida += "" + ordenada.indexOf(o) + " - " + o + "\n";
+                    }
+                    System.out.println(salida);
                     System.out.println(salida + "\n\n");
                     System.out.println("Ingrese el indice del inmueble o solar a eliminar");
                     int elim = in.nextInt();
@@ -393,9 +559,47 @@ public class Lab2P2_AndreaZelaya {
                 }
                 case 5: {
                     String salida = "";
-                    for (Object t : lista) {
-                        salida += "" + lista.indexOf(t) + " - " + t + "\n";
+                    ArrayList ready = new ArrayList();
+                    ArrayList construccion = new ArrayList();
+                    ArrayList constEspera = new ArrayList();
+                    ArrayList demoEspera = new ArrayList();
+                    ArrayList etc = new ArrayList();
 
+                    for (Object t : lista) {
+
+                        if (t instanceof Casa) {
+                            if (((Casa) t).getEstado().equals("LISTA")) {
+                                ready.add(t);
+                            } else if (((Casa) t).getEstado().equals("EN CONSTRUCCION")) {
+                                construccion.add(t);
+                            } else if (((Casa) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                constEspera.add(t);
+                            } else if (((Casa) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                demoEspera.add(t);
+                            }
+                        } else if (t instanceof Edificio) {
+                            if (((Edificio) t).getEstado().equals("LISTA")) {
+                                ready.add(t);
+                            } else if (((Edificio) t).getEstado().equals("EN CONSTRUCCION")) {
+                                construccion.add(t);
+                            } else if (((Edificio) t).getEstado().equals("CONSTRUCCION EN ESPERA")) {
+                                constEspera.add(t);
+                            } else if (((Edificio) t).getEstado().equals("EN ESPERA DE DEMOLICION")) {
+                                demoEspera.add(t);
+                            }
+                        } else {
+                            etc.add(t);
+                        }
+                    }
+                    ArrayList ordenada = new ArrayList();
+                    ordenada.addAll(ready);
+                    ordenada.addAll(construccion);
+                    ordenada.addAll(constEspera);
+                    ordenada.addAll(demoEspera);
+                    ordenada.addAll(etc);
+
+                    for (Object o : ordenada) {
+                        salida += "" + ordenada.indexOf(o) + " - " + o + "\n";
                     }
                     System.out.println(salida);
 
@@ -403,24 +607,24 @@ public class Lab2P2_AndreaZelaya {
                     int vent = in.nextInt();
                     if (vent >= 0 & vent < lista.size()) {
                         if (lista.get(vent) instanceof Casa) {
-                            if(inAcc == true){
-                            ((Casa) lista.get(vent)).setOwner(username);
+                            if (inAcc == true) {
+                                ((Casa) lista.get(vent)).setOwner(username);
                                 System.out.println("Venta exitosa");
-                            }else{
+                            } else {
                                 System.out.println("Venta no es posible, ingrese a una cuenta");
                             }
                         } else if (lista.get(vent) instanceof Edificio) {
-                            if(inAcc == true){
-                            ((Edificio) lista.get(vent)).setOwner(username);
+                            if (inAcc == true) {
+                                ((Edificio) lista.get(vent)).setOwner(username);
                                 System.out.println("Venta exitosa");
-                            }else{
+                            } else {
                                 System.out.println("Venta no es posible, ingrese a una cuenta");
                             }
                         } else if (lista.get(vent) instanceof Solar) {
-                            if(inAcc == true){
-                            ((Solar) lista.get(vent)).setOwner(username);
+                            if (inAcc == true) {
+                                ((Solar) lista.get(vent)).setOwner(username);
                                 System.out.println("Venta exitosa");
-                            }else{
+                            } else {
                                 System.out.println("Venta no es posible, ingrese a una cuenta");
                             }
                         }
@@ -494,21 +698,21 @@ public class Lab2P2_AndreaZelaya {
 
         System.out.println("Ingrese la contraseña: ");
         String contra = in.next();
-        
+
         if (cuenta.equals("admin") & contra.equals("admin1234")) {
             username = "Admin";
             isAdmin = true;
-        }else{
-        for (int i = 0; i < users.size(); i++) {
-            if (cuenta.equals(users.get(i).getUsername()) && contra.equals(users.get(i).getPassword())) {
-                username = users.get(i).getNombre();
-                isAdmin = false;
-                inAcc = true;
-                System.out.println("Log in exitoso");
-            } else {
+        } else {
+            for (int i = 0; i < users.size(); i++) {
+                if (cuenta.equals(users.get(i).getUsername()) && contra.equals(users.get(i).getPassword())) {
+                    username = users.get(i).getNombre();
+                    isAdmin = false;
+                    inAcc = true;
+                    System.out.println("Log in exitoso");
+                } else {
+                }
             }
         }
-}
-        
+
     }
 }

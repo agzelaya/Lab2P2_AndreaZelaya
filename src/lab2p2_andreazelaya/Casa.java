@@ -103,7 +103,7 @@ public class Casa {
     
     @Override
     public String toString(){
-        return "Numero de casa: " + num_casa + "\n" +
+        return "\nCASA\n" + "Numero de casa: " + num_casa + "\n" +
                 "Numero de bloque: " + num_bloque + "\n" +
                 "Color: " + color + "\n"+
                 "Ancho: " + ancho + "\n" +

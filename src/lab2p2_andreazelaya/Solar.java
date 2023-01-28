@@ -51,7 +51,7 @@ public class Solar {
     
     @Override
     public String toString(){
-        return "Ancho: " + ancho + "\n" +
+        return "\nSOLAR\n"+ "Ancho: " + ancho + "\n" +
                 "Largo: " + largo + "\n" +
                 "Area: " + (ancho*largo) + "\n" +
                 "Dueño: " + owner + "\n";

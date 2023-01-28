@@ -62,7 +62,7 @@ public class Edificio {
     
     @Override
     public String toString(){
-        return "Cantidad de pisos: " + pisos + "\n" +
+        return "\nEDIFICIO\n"+ "Cantidad de pisos: " + pisos + "\n" +
                 "Cantidad de locales: " + locales + "\n" +
                 "Direccion por referencia: " + direccion + "\n"
                 + "Estado: " + estado + "\n"

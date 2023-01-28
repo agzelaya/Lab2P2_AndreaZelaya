@@ -15,7 +15,7 @@ public class Lab2P2_AndreaZelaya {
     //variables para manejo de cuenta
     static boolean isAdmin = false;
     static boolean inAcc = false;
-    static String username = "null";
+    static String username;
 
     public static void main(String[] args) {
         Usuario admin = new Usuario("Admin", 0, "admin", "admin1234");
@@ -61,6 +61,7 @@ public class Lab2P2_AndreaZelaya {
                             break;
                         }
                     }
+                    System.out.println(users);
 
                     break;
                 }
@@ -140,7 +141,7 @@ public class Lab2P2_AndreaZelaya {
                             int locales = in.nextInt();
 
                             System.out.println("Ingrese la direccion por referencia: ");
-                            in.next();
+                            in.nextLine();
                             String direccion = in.nextLine();
 
                             System.out.println("Ingrese el estado del edificio: ");
@@ -221,7 +222,7 @@ public class Lab2P2_AndreaZelaya {
                             System.out.println("Opcion ingresada no es valida");
                         }
                     }
-                    break;
+            break;
                 }
                 case 3: {
                     if (isAdmin == false) {
@@ -449,7 +450,7 @@ public class Lab2P2_AndreaZelaya {
 
             if (pos >= 0 & pos < lista.size()) {
                 System.out.println("Ingrese el nuevo estado: ");
-                in.next();
+                in.nextLine();
                 String estado = in.nextLine();
 
                 if (lista.get(pos) instanceof Casa) {
@@ -467,7 +468,7 @@ public class Lab2P2_AndreaZelaya {
 
     public static void signUp() {
         System.out.println("Nombre: ");
-        in.next();
+        in.nextLine();
         String name = in.nextLine();
         username = name;
         isAdmin = false;
@@ -499,15 +500,12 @@ public class Lab2P2_AndreaZelaya {
             isAdmin = true;
         }else{
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUsername().equals(cuenta) && users.get(i).getPassword().equals(contra)) {
+            if (cuenta.equals(users.get(i).getUsername()) && contra.equals(users.get(i).getPassword())) {
                 username = users.get(i).getNombre();
                 isAdmin = false;
                 inAcc = true;
                 System.out.println("Log in exitoso");
-                break;
             } else {
-                System.out.println("Nombre de cuenta o contraseña incorrecta\n\n");
-                break;
             }
         }
 }

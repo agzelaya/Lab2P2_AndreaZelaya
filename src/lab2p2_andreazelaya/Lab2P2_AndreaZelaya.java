@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 
 public class Lab2P2_AndreaZelaya {
 
@@ -19,8 +20,7 @@ public class Lab2P2_AndreaZelaya {
     public static void main(String[] args) {
         Usuario admin = new Usuario("Admin", 0, "admin", "admin1234");
         users.add(admin);
-
-        System.out.println("INMOBILIARIA BLACK FLOYD\n\n");
+        JOptionPane.showMessageDialog(null, "INMOBILIARIA BLACK FLOYD");
         int opc;
         do {
             System.out.println("Menu:\n"
@@ -66,7 +66,7 @@ public class Lab2P2_AndreaZelaya {
                 }
 
                 case 4: {
-                    boolean isAdmin = true;
+                    boolean isAdmin = false;
                     boolean inAcc = false;
                     String username = "null";
                     System.out.println("Log out exitoso\n");
@@ -109,7 +109,7 @@ public class Lab2P2_AndreaZelaya {
 
                             System.out.println("Ingrese el numero de bloque: ");
                             int numblo = in.nextInt();
-
+                            
                             Color color = JColorChooser.showDialog(null, "Seleccione color", Color.WHITE);
 
                             System.out.println("Ingrese el ancho de la casa: ");
@@ -143,8 +143,7 @@ public class Lab2P2_AndreaZelaya {
                             in.next();
                             String direccion = in.nextLine();
 
-                            System.out.println("Ingrese el estado de la casa: ");
-                            in.next();
+                            System.out.println("Ingrese el estado del edificio: ");
                             String estado1 = in.nextLine();
 
                             Edificio edificio = new Edificio(pisos, locales, direccion, estado1);
@@ -158,11 +157,8 @@ public class Lab2P2_AndreaZelaya {
                             System.out.println("Ingrese el largo: ");
                             int largo = in.nextInt();
 
-                            System.out.println("Ingrese el estado de la casa: ");
-                            in.next();
-                            String estado2 = in.nextLine();
 
-                            Solar solar = new Solar(ancho, largo, estado2);
+                            Solar solar = new Solar(ancho, largo);
                             lista.add(solar);
                             break;
                         }
@@ -461,7 +457,6 @@ public class Lab2P2_AndreaZelaya {
                 } else if (lista.get(pos) instanceof Edificio) {
                     ((Edificio) lista.get(pos)).setEstado(estado);
                 } else if (lista.get(pos) instanceof Solar) {
-                    ((Solar) lista.get(pos)).setEstado(estado);
                 }
 
             } else {
@@ -498,20 +493,24 @@ public class Lab2P2_AndreaZelaya {
 
         System.out.println("Ingrese la contraseña: ");
         String contra = in.next();
-
+        
+        if (cuenta.equals("admin") & contra.equals("admin1234")) {
+            username = "Admin";
+            isAdmin = true;
+        }else{
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getUsername().equals(cuenta) && users.get(i).getPassword().equals(contra)) {
                 username = users.get(i).getNombre();
                 isAdmin = false;
                 inAcc = true;
+                System.out.println("Log in exitoso");
+                break;
             } else {
                 System.out.println("Nombre de cuenta o contraseña incorrecta\n\n");
+                break;
             }
         }
-
-        if (cuenta.equals("admin") && contra.equals("admin1234")) {
-            username = "Admin";
-            isAdmin = true;
-        }
+}
+        
     }
 }

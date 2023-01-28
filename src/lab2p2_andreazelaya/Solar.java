@@ -5,25 +5,16 @@ public class Solar {
     private int ancho;
     private int largo;
     private int area;
-    private String estado;
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     private String owner;
     
     public Solar(){
         
     }
 
-    public Solar(int ancho, int largo, String estado) {
+    public Solar(int ancho, int largo) {
         this.ancho = ancho;
         this.largo = largo;
-        this.estado = estado;
     }
 
     public int getAncho() {
